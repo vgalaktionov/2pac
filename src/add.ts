@@ -3,11 +3,12 @@ import { writeFileSync } from 'fs';
 import { checkInit } from './init';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
+import { config } from './config';
 
-const config = require(join(process.cwd(), '.2pacrc.json'));
+export type VersionType = 'major' | 'minor' | 'patch';
 
 interface AddAnswers {
-    versionType: 'major' | 'minor' | 'patch';
+    versionType: VersionType;
     hasAdded: boolean;
     hasChanged: boolean;
     hasFixed: boolean;
