@@ -36,6 +36,7 @@
         "typescript": "^3.7.2"
     },
     "dependencies": {
+        "chalk": "^3.0.0",
         "commander": "^4.0.1",
         "inquirer": "^7.0.0",
         "open": "^7.0.0"
