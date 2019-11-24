@@ -20,6 +20,8 @@
     "author": "Vadim Galaktionov (vadim@galaktionov.nl)",
     "license": "MIT",
     "devDependencies": {
+        "@types/commander": "^2.12.2",
+        "@types/inquirer": "^6.5.0",
         "@types/jest": "^24.0.23",
         "@types/node": "^12.12.12",
         "@typescript-eslint/eslint-plugin": "^2.8.0",
@@ -31,7 +33,11 @@
         "prettier": "^1.19.1",
         "ts-jest": "^24.2.0",
         "ts-node": "^8.5.2",
-        "ts-node-dev": "^1.0.0-pre.44",
         "typescript": "^3.7.2"
+    },
+    "dependencies": {
+        "commander": "^4.0.1",
+        "inquirer": "^7.0.0",
+        "open": "^7.0.0"
     }
 }
