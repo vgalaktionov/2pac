@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import pkg = require('../package.json');
 import program from 'commander';
 import add from './add';

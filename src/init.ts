@@ -3,13 +3,24 @@ import { join } from 'path';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 
-const defaultConfig = {};
-const configPath = join(process.cwd(), '.2pacrc.json');
-const entriesPath = join(process.cwd(), '.2pacentries');
+interface Config {
+    entriesPath: PathLike;
+}
 
-const writeConfig = (path: PathLike) => {
+export const configPath = join(process.cwd(), '.2pacrc.json');
+export const entriesPath = join(process.cwd(), '.changelogentries');
+
+const writeConfig = (path: PathLike, config: Config) => {
     console.log('Writing configuration file (.2pacrc.json).');
-    writeFileSync(path, JSON.stringify(defaultConfig, null, 4));
+    writeFileSync(path, JSON.stringify(config, null, 4));
+};
+
+export const checkInit = () => {
+    const config = require(join(process.cwd(), '.2pacrc.json'));
+    if (!existsSync(configPath) || !existsSync(config.entriesPath)) {
+        console.log(chalk.red('No config and/or entries directory found; run `2pac init` first!'));
+        process.exit(1);
+    }
 };
 
 export default async function init() {
@@ -23,8 +34,17 @@ export default async function init() {
         return;
     }
 
+    const config = await inquirer.prompt([
+        {
+            type: 'input',
+            name: 'entriesPath',
+            message: 'Where should individual entries be stored?',
+            default: entriesPath,
+        },
+    ]);
+
     if (!existsSync(configPath)) {
-        writeConfig(configPath);
+        writeConfig(configPath, config);
     } else {
         const { overwrite } = await inquirer.prompt([
             {
@@ -34,11 +54,11 @@ export default async function init() {
             },
         ]);
         if (overwrite) {
-            writeConfig(configPath);
+            writeConfig(configPath, config);
         }
     }
 
-    if (!existsSync(entriesPath)) {
-        mkdirSync(entriesPath);
+    if (!existsSync(config.entriesPath)) {
+        mkdirSync(config.entriesPath);
     }
 }
