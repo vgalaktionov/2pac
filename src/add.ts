@@ -18,7 +18,7 @@ interface AddAnswers {
 }
 
 const addLines = (entry: string, input: string, section: 'Added' | 'Changed' | 'Fixed') => {
-    entry += `### ${section}\n\n\n`;
+    entry += `### ${section}\n\n`;
     entry += input
         .split('\n')
         .filter(l => l.length > 0)
