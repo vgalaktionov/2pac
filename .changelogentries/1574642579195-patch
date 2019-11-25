@@ -1,3 +1,4 @@
 ### Fixed
-  - Don't gitignore built JS files
-  - Bug in add command
+
+-   Don't gitignore built JS files
+-   Bug in add command

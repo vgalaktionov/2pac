@@ -20,7 +20,9 @@ const generateChangelog = (filenames: string[]) => {
         const groups = matches.groups!;
         const timestamp = new Date(parseInt(groups.timestampRaw, 10));
         const versionType = groups.versionType as VersionType;
-        const entry = readFileSync(join(config.entriesPath, f)).toString();
+        const entry = readFileSync(join(config.entriesPath, f))
+            .toString()
+            .trim();
         return { timestamp, versionType, entry };
     });
 
@@ -67,7 +69,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-${changelogEntries.reverse().join('')}`;
+${changelogEntries.reverse().join('\n\n')}`;
     return { changelog, version: `${version.major}.${version.minor}.${version.patch}` };
 };
 

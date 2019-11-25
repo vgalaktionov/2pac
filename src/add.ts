@@ -18,11 +18,11 @@ interface AddAnswers {
 }
 
 const addLines = (entry: string, input: string, section: 'Added' | 'Changed' | 'Fixed') => {
-    entry += `### ${section}\n`;
+    entry += `### ${section}\n\n\n`;
     entry += input
         .split('\n')
         .filter(l => l.length > 0)
-        .map(l => `  - ${l}\n`)
+        .map(l => `-   ${l}\n`)
         .join('');
     entry += '\n';
     return entry;
@@ -87,7 +87,7 @@ export default async function add() {
 
     const { entry, name } = generateEntry(answers);
 
-    writeFileSync(join(config.entriesPath, name), entry.trim());
+    writeFileSync(join(config.entriesPath, name), entry);
 
     console.log(chalk.cyan(`\nWritten changelog entry ${name} !`));
 }
