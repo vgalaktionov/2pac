@@ -80,7 +80,7 @@ export default async function add() {
         },
     ]);
 
-    if (!answers.added && !answers.changed && !answers.changed) {
+    if (!answers.added && !answers.changed && !answers.fixed) {
         console.log(chalk.red('\nNo changelog provided!'));
         return;
     }
