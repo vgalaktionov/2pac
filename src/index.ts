@@ -8,7 +8,7 @@ import init from './init';
 import namesake from './namesake';
 import importExisting from './import';
 
-program.version(`2pac version ${pkg.version}`);
+program.name('2pac').version(`2pac version ${pkg.version}`);
 
 program
     .command('add')
@@ -22,7 +22,7 @@ program
 
 program
     .command('init')
-    .description('Initialize the .2pacrc.json and create .2pacentries folder.')
+    .description('Initialize the .2pacrc.json and create changelog entries folder.')
     .action(init);
 
 program
@@ -32,7 +32,11 @@ program
 
 program
     .command('namesake')
-    .description('Play the song this package is named after on YouTube.')
+    .description('???')
     .action(namesake);
+
+if (!process.argv.slice(2).length) {
+    program.help();
+}
 
 program.parse(process.argv);
