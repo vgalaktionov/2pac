@@ -6,6 +6,7 @@ import add from './add';
 import generate from './generate';
 import init from './init';
 import namesake from './namesake';
+import importExisting from './import';
 
 program.version(`2pac version ${pkg.version}`);
 
@@ -23,6 +24,11 @@ program
     .command('init')
     .description('Initialize the .2pacrc.json and create .2pacentries folder.')
     .action(init);
+
+program
+    .command('import')
+    .description('Import an existing CHANGELOG.md file.')
+    .action(importExisting);
 
 program
     .command('namesake')

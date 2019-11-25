@@ -13,6 +13,9 @@
         "@typescript-eslint/explicit-function-return-type": 0,
         "curly": "error",
         "@typescript-eslint/no-var-requires": 0,
-        "@typescript-eslint/no-non-null-assertion": 0
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "no-unused-vars": ["error", {
+            "argsIgnorePattern": "^_"
+        }]
     }
 }

@@ -87,7 +87,7 @@ export default async function add() {
 
     const { entry, name } = generateEntry(answers);
 
-    writeFileSync(join(config.entriesPath, name), entry);
+    writeFileSync(join(config.entriesPath, name), entry.trim());
 
     console.log(chalk.cyan(`\nWritten changelog entry ${name} !`));
 }

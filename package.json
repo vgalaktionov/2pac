@@ -1,6 +1,6 @@
 {
     "name": "2pac",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "A CLI utility to manage changelogs and semantic versioning.",
     "main": "lib/src/index.js",
     "bin": "lib/src/index.js",
@@ -41,6 +41,7 @@
     "dependencies": {
         "chalk": "^3.0.0",
         "commander": "^4.0.1",
+        "date-fns": "^2.8.1",
         "inquirer": "^7.0.0",
         "open": "^7.0.0"
     }

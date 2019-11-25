@@ -1,3 +1,7 @@
 import { join } from 'path';
 
-export const config = require(join(process.cwd(), '.2pacrc.json'));
+export interface Config {
+    entriesPath: string;
+    firstVersion?: string;
+}
+export const config: Config = require(join(process.cwd(), '.2pacrc.json'));
