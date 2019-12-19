@@ -20,7 +20,7 @@ const generateChangelog = (filenames: string[]) => {
         const groups = matches.groups!;
         const timestamp = new Date(parseInt(groups.timestampRaw, 10));
         const versionType = groups.versionType as VersionType;
-        const entry = readFileSync(join(config.entriesPath, f))
+        const entry = readFileSync(join(process.cwd(), config().entriesPath, f))
             .toString()
             .trim();
         return { timestamp, versionType, entry };
@@ -77,7 +77,7 @@ export default function generate() {
     console.log('2pac generate');
 
     try {
-        const filenames = readdirSync(config.entriesPath);
+        const filenames = readdirSync(join(process.cwd(), config().entriesPath));
         const { changelog, version } = generateChangelog(filenames);
 
         writeFileSync(join(process.cwd(), 'CHANGELOG.md'), changelog);

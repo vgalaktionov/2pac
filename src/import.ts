@@ -48,8 +48,10 @@ export default function importExisting() {
         entries = entries.reverse();
 
         const firstVersion = entries[0].versionString;
-        config.firstVersion = firstVersion;
-        writeFileSync(join(process.cwd(), '.2pacrc.json'), JSON.stringify(config, undefined, 4));
+        writeFileSync(
+            join(process.cwd(), '.2pacrc.json'),
+            JSON.stringify({ ...config(), firstVersion }, undefined, 4),
+        );
         console.log(chalk.cyan(`Set first changelog version to ${firstVersion} .`));
 
         entries.forEach(({ versionString, timestamp, entry }, index) => {
@@ -68,11 +70,11 @@ export default function importExisting() {
             }
 
             let ms = timestamp.getTime();
-            while (existsSync(join(config.entriesPath, `${ms}-${versionType}`))) {
+            while (existsSync(join(process.cwd(), config().entriesPath, `${ms}-${versionType}`))) {
                 ms++;
             }
 
-            const filename = join(config.entriesPath, `${ms}-${versionType}`);
+            const filename = join(process.cwd(), config().entriesPath, `${ms}-${versionType}`);
 
             writeFileSync(filename, entry.trim());
             console.log(chalk.cyan(`Written entry ${filename} .`));

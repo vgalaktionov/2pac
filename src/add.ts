@@ -1,9 +1,8 @@
 import { join } from 'path';
 import { writeFileSync } from 'fs';
-import { checkInit } from './init';
 import inquirer from 'inquirer';
 import chalk from 'chalk';
-import { config } from './config';
+import { config, checkInit } from './config';
 
 export type VersionType = 'major' | 'minor' | 'patch';
 
@@ -87,7 +86,7 @@ export default async function add() {
 
     const { entry, name } = generateEntry(answers);
 
-    writeFileSync(join(config.entriesPath, name), entry);
+    writeFileSync(join(process.cwd(), config().entriesPath, name), entry);
 
     console.log(chalk.cyan(`\nWritten changelog entry ${name} !`));
 }

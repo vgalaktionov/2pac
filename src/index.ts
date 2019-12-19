@@ -10,6 +10,10 @@ import importExisting from './import';
 
 program.name('2pac').version(`2pac version ${pkg.version}`);
 
+process.on('uncaughtException', function(error) {
+    console.error(error.stack);
+});
+
 program
     .command('add')
     .description('Add a new changelog entry.')
