@@ -7,33 +7,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.3.2] - 2019-11-25
+## [0.6.0] - 2019-12-19
 
 ### Fixed
 
--   Don't publish the typescript code.
+-   Fix the problem with starting fresh
 
-## [0.3.1] - 2019-11-25
-
-### Fixed
-
--   Don't gitignore built JS files
--   Bug in add command
-
-## [0.3.0] - 2019-11-25
+## [0.5.0] - 2019-11-24
 
 ### Added
 
--   Namesake command
--   README.md
--   LICENSE
--   Some user-friendliness improvements
+-   Application skeleton
+-   Initial implementations of init, add and generate commands
 
-## [0.2.0] - 2019-11-25
+## [0.4.0] - 2019-11-24
 
 ### Added
 
--   Initial implementation of import command
+-   Application skeleton
+-   Initial implementations of init, add and generate commands
+
+## [0.3.0] - 2019-11-24
+
+### Added
+
+-   Application skeleton
+-   Initial implementations of init, add and generate commands
+
+## [0.2.0] - 2019-11-24
+
+### Added
+
+-   Application skeleton
+-   Initial implementations of init, add and generate commands
 
 ## [0.1.0] - 2019-11-24
 

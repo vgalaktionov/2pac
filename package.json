@@ -1,6 +1,6 @@
 {
     "name": "2pac",
-    "version": "0.3.2",
+    "version": "0.6.0",
     "description": "A CLI utility to manage changelogs and semantic versioning.",
     "main": "dist/src/index.js",
     "bin": "dist/src/index.js",
