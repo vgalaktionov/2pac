@@ -14,40 +14,40 @@ interface Entry {
     entry: string;
 }
 
+const defaultEntry = {
+    versionString: '',
+    timestamp: new Date(),
+    entry: '',
+};
+
 export default function importExisting() {
     console.log('2pac import\n');
     try {
         const existing = readFileSync(join(process.cwd(), 'CHANGELOG.md')).toString();
         const contents = existing.match(contentsPattern)!.groups!.contents;
 
-        let entries: Entry[] = [];
-        const current = {
-            versionString: '',
-            timestamp: new Date(),
-            entry: '',
-        };
-        contents.split('\n').forEach((line, index) => {
-            const match = line.match(headerPattern);
+        const entries = contents
+            .split('\n')
+            .reduce(
+                (acc: Entry[], line: string) => {
+                    const match = line.match(headerPattern);
 
-            if (match != null) {
-                if (index > 1) {
-                    entries.push(current);
-                }
-                const { versionString, dateString } = match.groups!;
-                current.versionString = versionString;
-                current.timestamp = parseISO(dateString);
-                current.entry = '';
-            } else {
-                current.entry += `${line}\n`;
-            }
-        });
-        if (current.versionString.length > 0 && current.entry.length > 0) {
-            entries.push(current);
-        }
+                    if (match != null) {
+                        const { versionString, dateString } = match.groups!;
+                        acc.push({ versionString, timestamp: parseISO(dateString), entry: '' });
+                    } else {
+                        acc[acc.length - 1].entry += `${line}\n`;
+                    }
 
-        entries = entries.reverse();
+                    return acc;
+                },
+                [{ ...defaultEntry }],
+            )
+            .filter(e => e.entry.trim().length > 0)
+            .reverse();
 
         const firstVersion = entries[0].versionString;
+        firstVersion.slice;
         writeFileSync(
             join(process.cwd(), '.2pacrc.json'),
             JSON.stringify({ ...config(), firstVersion }, undefined, 4),
@@ -57,8 +57,16 @@ export default function importExisting() {
         entries.forEach(({ versionString, timestamp, entry }, index) => {
             const previous = index === 0 ? firstVersion : entries[index - 1].versionString;
 
-            const [previousMajor, previousMinor, previousPatch] = previous.split('.');
-            const [major, minor, patch] = versionString.split('.');
+            let [previousMajor, previousMinor, previousPatch] = previous
+                .split('.')
+                .map(v => parseInt(v, 10));
+
+            // We always consider the first entry to be a minor, and need to subtract one to get the final version correct
+            if (index === 0) {
+                previousMinor--;
+            }
+
+            const [major, minor, patch] = versionString.split('.').map(v => parseInt(v, 10));
 
             let versionType: VersionType = 'minor';
             if (major > previousMajor) {

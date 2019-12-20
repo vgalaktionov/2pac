@@ -7,29 +7,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.5.0] - 2019-12-20
+## [1.0.0] - 2019-12-20
 
 ### Fixed
 
--   actually use the firstVersion attribute
+-   Fixed the version algorithm
 
-## [0.4.1] - 2019-12-20
+## [0.6.1] - 2019-12-20
 
 ### Fixed
 
 -   Use a prepublish command so we don't forget to build.
 
-## [0.4.0] - 2019-12-19
+## [0.6.0] - 2019-12-20
+
+### Fixed
+
+-   actually use the firstVersion attribute
+
+## [0.5.0] - 2019-12-19
 
 ### Fixed
 
 -   Fix the problem with starting fresh
 
-## [0.3.2] - 2019-11-25
+## [0.4.1] - 2019-11-25
 
 ### Fixed
 
 -   Don't publish the typescript code.
+
+## [0.4.0] - 2019-11-25
+
+### Added
+
+-   Namesake command
+-   README.md
+-   LICENSE
+-   Some user-friendliness improvements
 
 ## [0.3.1] - 2019-11-25
 
@@ -42,18 +57,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   Namesake command
--   README.md
--   LICENSE
--   Some user-friendliness improvements
-
-## [0.2.0] - 2019-11-25
-
-### Added
-
 -   Initial implementation of import command
 
-## [0.1.0] - 2019-11-24
+## [0.2.0] - 2019-11-24
 
 ### Added
 
