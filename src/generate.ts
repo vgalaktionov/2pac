@@ -11,6 +11,21 @@ interface Entry {
     entry: string;
 }
 
+interface Version {
+    major: number;
+    minor: number;
+    patch: number;
+}
+
+const getVersion = (): Version => {
+    const firstVersion = config().firstVersion;
+    if (firstVersion != null) {
+        const [major, minor, patch] = firstVersion.split('.').map(v => parseInt(v, 10));
+        return { major, minor, patch };
+    }
+    return { major: 0, minor: 0, patch: 0 };
+};
+
 const generateChangelog = (filenames: string[]) => {
     const entries: Entry[] = filenames.map(f => {
         const matches = f.match(/^(?<timestampRaw>\d+)-(?<versionType>major|minor|patch)$/);
@@ -29,11 +44,8 @@ const generateChangelog = (filenames: string[]) => {
     entries.sort((a, b) => a.timestamp.getTime() - b.timestamp.getTime());
 
     const changelogEntries = [];
-    const version = {
-        major: 0,
-        minor: 0,
-        patch: 0,
-    };
+
+    const version = getVersion();
 
     for (const { timestamp, versionType, entry } of entries) {
         switch (versionType) {
