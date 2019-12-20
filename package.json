@@ -1,13 +1,14 @@
 {
     "name": "2pac",
-    "version": "0.6.0",
+    "version": "0.6.1",
     "description": "A CLI utility to manage changelogs and semantic versioning.",
     "main": "dist/src/index.js",
     "bin": "dist/src/index.js",
     "scripts": {
         "test": "npx jest",
         "start": "npx ts-node src/index.ts",
-        "build": "tsc"
+        "build": "tsc",
+        "prepare": "npm run build"
     },
     "repository": {
         "type": "git",
